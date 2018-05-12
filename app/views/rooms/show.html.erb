@@ -5,5 +5,54 @@
   <%= @room.name %>
 </p>
 
+
+<table class="board">
+  <tr>
+    <td class="field" id='a1'>
+      <div >
+
+      </div>
+    </td>
+    <td class="field" id='a2'>
+      <div >
+
+      </div>
+    </td>
+    <td  class="field" id='a3'>
+      <div>
+
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="field" id='b1'>
+      <div></div>
+    </td>
+    <td class="field" id='b2'>
+      <div></div>
+    </td>
+    <td class="field" id='b3'>
+      <div></div>
+    </td>
+  </tr>
+  <tr>
+    <td class="field" id='c1'>
+      <div></div>
+    </td>
+    <td class="field" id='c2'>
+      <div></div>
+    </td>
+    <td class="field" id='c3'>
+      <div></div>
+    </td>
+  </tr>
+</table>
+
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
+
+<script type="text/javascript">
+  $(".field").click(function(e) {
+    App.board.select(this.id);
+  });
+</script>
