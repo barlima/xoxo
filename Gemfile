@@ -30,6 +30,7 @@ gem 'redis', '~> 4.0'
 gem "mongoid", '~> 6.0'
 gem 'jquery-rails'
 gem 'bootstrap'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
