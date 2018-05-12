@@ -10,4 +10,8 @@ class Room
   def full?
     users.count >= 2
   end
+
+  def has_awaiting_player?
+    users.count == 1
+  end
 end

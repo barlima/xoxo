@@ -7,7 +7,6 @@ App.board = App.cable.subscriptions.create "BoardChannel",
 
   received: (data) ->
     color = $("##{data['field']}").css('background-color')
-    console.log(color)
     if color == 'rgb(255, 0, 0)'
       color = 'blue'
     else

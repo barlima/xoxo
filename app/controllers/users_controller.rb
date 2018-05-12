@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    get_room
+    set_room
 
     respond_to do |format|
       if @user.save
@@ -24,13 +24,15 @@ class UsersController < ApplicationController
     params.require(:user).permit(:nickname)
   end
 
-  def get_room
+  def set_room
     room = Room.all.select{|r| !r.full?}.first
     if room
+      ActionCable.server.broadcast 'player_channel', {nickname: @user.nickname} if room.has_awaiting_player?
       @user.room_id = room.id
     else
       room = Room.create!(name: Faker::Beer.unique.name)
       @user.room_id = room.id
     end
+    room
   end
 end
