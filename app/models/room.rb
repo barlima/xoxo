@@ -18,6 +18,14 @@ class Room
     users.count == 1
   end
 
+  def active_player
+    self.game.turn == 1 ? users.first.nickname : users.second.nickname
+  end
+
+  def inactive_player
+    self.game.turn == 2 ? users.first.nickname : users.second.nickname
+  end
+
   private
 
   def create_game

@@ -9,7 +9,7 @@ App.user_move = App.cable.subscriptions.create "UserMoveChannel",
     $('#active_player').val("#{data['inactive']}")
     $('#inactive_player').val("#{data['active']}")
     $('#turn').html(
-      "<strong>#{data['inactive']}'s turn</strong>"
+      "<strong>#{data['inactive']}'s move</strong>"
     )
 
 

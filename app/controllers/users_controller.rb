@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  after_action :display_starting_user, only: [:create]
+
   def new
     @user = User.new
   end
@@ -29,7 +32,6 @@ class UsersController < ApplicationController
     room = Room.all.select{|r| !r.full?}.first
     if room
       # Added to existing channel
-      ActionCable.server.broadcast 'player_channel', {nickname: @user.nickname} if room.has_awaiting_player?
       @user.room_id = room.id
       start_game(room)
     else
@@ -42,5 +44,16 @@ class UsersController < ApplicationController
 
   def start_game(room)
     room.game.started = true
+  end
+
+  def display_starting_user
+    @user = User.last
+    if @user.room.full?
+      ActionCable.server.broadcast 'player_channel', {
+        nickname: @user.nickname,
+        starting_player: @user.room.active_player,
+        inactive_player: @user.room.inactive_player
+      }
+    end
   end
 end
