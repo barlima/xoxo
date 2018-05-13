@@ -6,7 +6,6 @@ App.player = App.cable.subscriptions.create "PlayerChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    console.log("data['nickname']")
     $("#player_two").html(
       "<strong>Player 2:</strong> #{data['nickname']}"
     )

@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :check_permissions, only: [:show]
 
   # GET /rooms
   # GET /rooms.json
@@ -70,5 +71,9 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:name)
+    end
+
+    def check_permissions
+      redirect_to rooms_path unless @room.users.pluck(:nickname).include?(cookies[:xoxo_player])
     end
 end
