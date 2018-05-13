@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     room
   end
 
-  def start_game
+  def start_game(room)
     room.game.started = true
   end
 end

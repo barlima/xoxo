@@ -15,9 +15,12 @@
   <%= player_two %>
 </p>
 
-<p id='game'>
+<p id='turn'>
   <strong><%= turn %></strong>
 </p>
+
+<input type="hidden" id="active_player"   value="<%= active_player %>">
+<input type="hidden" id="inactive_player" value="<%= opponent_name(active_player) %>">
 
 <table class="board">
   <tr>
@@ -66,6 +69,14 @@
 
 <script type="text/javascript">
   $(".field").click(function(e) {
-    App.board.select(this.id);
+
+    if($("#active_player").val() === "<%= cookies[:xoxo_player] %>") {
+      var active = $("#active_player").val();
+      var inactive = $("#inactive_player").val()
+
+      App.board.select(this.id);
+      App.user_move.change_active_player(inactive, active);
+    }
+
   });
 </script>
