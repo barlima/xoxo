@@ -28,4 +28,8 @@ module RoomsHelper
   def opponent_name(nickname)
     nickname == @room.users.first.nickname ? @room.users.second.nickname : @room.users.first.nickname
   end
+
+  def get_board_id
+    @room.game.board.id.to_s
+  end
 end

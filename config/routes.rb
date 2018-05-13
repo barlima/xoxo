@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :rooms
   resources :users#, only: [:new]
 
+  post 'boards/update'
+
   mount ActionCable.server => '/cable'
 end

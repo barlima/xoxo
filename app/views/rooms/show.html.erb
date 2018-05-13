@@ -76,6 +76,15 @@
 
       App.board.select(this.id);
       App.user_move.change_active_player(inactive, active);
+
+      $.ajax({
+        type: "POST",
+        url: "/boards/update",
+        data: {
+          id: "<%= get_board_id %>",
+          field: this.id
+        }
+      });
     }
 
   });
