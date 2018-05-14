@@ -32,4 +32,29 @@ module RoomsHelper
   def get_board_id
     @room.game.board.id.to_s
   end
+
+  def get_game_id
+    @room.game.id.to_s
+  end
+
+  def get_color_by_id(id)
+    value = @room.game.board.get_value_by_id(id)
+    if value == 1
+      return 'blue'
+    elsif value == 2
+      return 'red'
+    else
+      'white'
+    end
+  end
+
+  def get_color_by_player(player)
+    player == player_one ? 'blue' : 'red'
+  end
+
+  private
+
+  def reload
+    puts 'reload'
+  end
 end

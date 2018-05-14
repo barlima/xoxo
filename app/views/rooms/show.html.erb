@@ -19,48 +19,24 @@
   <strong><%= turn %></strong>
 </p>
 
-<input  id="active_player"   value="<%= active_player %>">
-<input  id="inactive_player" value="<%= opponent_name(active_player) %>">
+<input type="hidden" id="active_player"   value="<%= active_player %>">
+<input type="hidden" id="inactive_player" value="<%= opponent_name(active_player) %>">
 
 <table class="board">
   <tr>
-    <td class="field" id='a1'>
-      <div >
-
-      </div>
-    </td>
-    <td class="field" id='a2'>
-      <div >
-
-      </div>
-    </td>
-    <td  class="field" id='a3'>
-      <div>
-
-      </div>
-    </td>
+    <td class="field" id='a1' style="background-color: <%= get_color_by_id('a1') %>;"></td>
+    <td class="field" id='a2' style="background-color: <%= get_color_by_id('a2') %>;"></td>
+    <td class="field" id='a3' style="background-color: <%= get_color_by_id('a3') %>;"></td>
   </tr>
   <tr>
-    <td class="field" id='b1'>
-      <div></div>
-    </td>
-    <td class="field" id='b2'>
-      <div></div>
-    </td>
-    <td class="field" id='b3'>
-      <div></div>
-    </td>
+    <td class="field" id='b1' style="background-color: <%= get_color_by_id('b1') %>;"></td>
+    <td class="field" id='b2' style="background-color: <%= get_color_by_id('b2') %>;"></td>
+    <td class="field" id='b3' style="background-color: <%= get_color_by_id('b3') %>;"></td>
   </tr>
   <tr>
-    <td class="field" id='c1'>
-      <div></div>
-    </td>
-    <td class="field" id='c2'>
-      <div></div>
-    </td>
-    <td class="field" id='c3'>
-      <div></div>
-    </td>
+    <td class="field" id='c1' style="background-color: <%= get_color_by_id('c1') %>;"></td>
+    <td class="field" id='c2' style="background-color: <%= get_color_by_id('c2') %>;"></td>
+    <td class="field" id='c3' style="background-color: <%= get_color_by_id('c3') %>;"></td>
   </tr>
 </table>
 
@@ -72,17 +48,33 @@
 
     if($("#active_player").val() === "<%= cookies[:xoxo_player] %>") {
       var active = $("#active_player").val();
-      var inactive = $("#inactive_player").val()
+      var inactive = $("#inactive_player").val();
 
-      App.board.select(this.id);
+      var color;
+      if(active === "<%= player_one %>") {
+        color = 'blue';
+      }  else {
+        color = 'red';
+      }
+
+      App.board.select(this.id, color);
       App.user_move.change_active_player(inactive, active);
 
       $.ajax({
-        type: "POST",
-        url: "/boards/update",
+        type: "PATCH",
+        url: "/boards",
         data: {
           id: "<%= get_board_id %>",
-          field: this.id
+          field: this.id,
+          player: active
+        }
+      });
+
+      $.ajax({
+        type: "PATCH",
+        url: "/games",
+        data: {
+          id: "<%= get_game_id %>"
         }
       });
     }

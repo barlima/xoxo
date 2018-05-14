@@ -6,13 +6,7 @@ App.board = App.cable.subscriptions.create "BoardChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    color = $("##{data['field']}").css('background-color')
-    if color == 'rgb(255, 0, 0)'
-      color = 'blue'
-    else
-      color = 'red'
+    $("##{data['field']}").css('background-color', data['color'])
 
-    $("##{data['field']}").css('background-color', color)
-
-  select: (field_id) ->
-    @perform 'select', field: field_id
+  select: (field_id, color) ->
+    @perform 'select', field: field_id, color: color

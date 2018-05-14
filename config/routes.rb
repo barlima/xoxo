@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :rooms
   resources :users#, only: [:new]
 
-  post 'boards/update'
+  patch '/boards', to: 'boards#update'
+  patch '/games', to: 'games#update'
 
   mount ActionCable.server => '/cable'
 end

@@ -10,6 +10,10 @@ class Game
   field :turn, type: Integer
   field :started, type: Boolean, default: false
 
+  def toggle_turn
+
+  end
+
   private
 
   def create_board
