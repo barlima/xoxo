@@ -67,6 +67,11 @@
           id: "<%= get_board_id %>",
           field: this.id,
           player: active
+        },
+        success: function(data) {
+          if(data.win) {
+            alert(active + " wins!");
+          }
         }
       });
 

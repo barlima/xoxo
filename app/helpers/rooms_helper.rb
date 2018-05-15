@@ -52,6 +52,11 @@ module RoomsHelper
     player == player_one ? 'blue' : 'red'
   end
 
+  def check_full_board(id)
+    board = Board.find(id)
+    board.full?
+  end
+
   private
 
   def reload
