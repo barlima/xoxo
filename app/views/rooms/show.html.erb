@@ -40,13 +40,12 @@
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Give up', '#' %>
 
 <script type="text/javascript">
   $(".field").click(function(e) {
 
-    if($("#active_player").val() === "<%= cookies[:xoxo_player] %>") {
+    if($("#active_player").val() === "<%= cookies[:xoxo_player] %>" && $("#" + this.id).css('background-color') === 'rgb(255, 255, 255)') {
       var active = $("#active_player").val();
       var inactive = $("#inactive_player").val();
 
@@ -70,7 +69,9 @@
         },
         success: function(data) {
           if(data.win) {
-            alert(active + " wins!");
+            App.status.status(active + " won!");
+          } else if (data.full) {
+            App.status.status("Draw");
           }
         }
       });

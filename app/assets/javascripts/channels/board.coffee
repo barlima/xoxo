@@ -7,8 +7,6 @@ App.board = App.cable.subscriptions.create "BoardChannel",
 
   received: (data) ->
     color = $("##{data['field']}").css('background-color')
-    # ToDo: check if field is empty or not
-    # maybe handle it in show.html.erb
     $("##{data['field']}").css('background-color', data['color'])
 
   select: (field_id, color) ->

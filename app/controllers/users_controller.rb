@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         cookies[:xoxo_player] = @user.nickname
-        format.html { redirect_to room_path(@user.room_id), notice: 'User was successfully created.' }
+        format.html { redirect_to room_path(@user.room_id) }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
