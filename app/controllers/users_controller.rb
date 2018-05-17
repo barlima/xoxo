@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       start_game(room)
     else
       # Added to a new channl, awaiting for an opponent
-      room = Room.create!(name: Faker::Beer.unique.name)
+      room = Room.create!(name: Faker::WorldOfWarcraft.unique.hero)
       @user.room_id = room.id
     end
     room
