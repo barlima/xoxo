@@ -7,4 +7,10 @@ class GamesController < ApplicationController
     head :ok
   end
 
+  def give_up
+    @game = Game.find(params[:id])
+    @user_won = @game.room.users.find_by(nickname: params[:nickname])
+    @user_lost
+  end
+
 end

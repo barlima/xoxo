@@ -26,6 +26,8 @@ table.board {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
+    padding-left: 250px;
+    padding-right: 250px;
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -56,4 +58,13 @@ table.board {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.btn-modal {
+  margin: 20px;
+  width: 10%;
+}
+
+#giveUp {
+  margin: 20px;
 }

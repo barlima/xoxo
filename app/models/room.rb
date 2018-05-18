@@ -38,6 +38,10 @@ class Room
     name == users.first ? 1 : 2
   end
 
+  def get_oponent_for(nickname)
+    
+  end
+
   private
 
   def create_game
