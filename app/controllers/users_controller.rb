@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    set_room
+    @user.set_room
 
     respond_to do |format|
       if @user.save
@@ -26,24 +26,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:nickname)
-  end
-
-  def set_room
-    room = Room.all.select{|r| !r.full?}.first
-    if room
-      # Added to existing channel
-      @user.room_id = room.id
-      start_game(room)
-    else
-      # Added to a new channl, awaiting for an opponent
-      room = Room.create!(name: Faker::WorldOfWarcraft.unique.hero)
-      @user.room_id = room.id
-    end
-    room
-  end
-
-  def start_game(room)
-    room.game.started = true
   end
 
   def display_starting_user

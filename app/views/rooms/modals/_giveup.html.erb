@@ -4,7 +4,8 @@
   <!-- Modal content -->
   <div class="modal-content">
     <p>Are you sure?</p>
-    <%= link_to 'YES', '#', class: 'btn btn-primary btn-sm btn-modal' %>
+    <%= link_to 'YES', give_up_path(nickname: cookies[:xoxo_player], id: get_game_id),
+        method: :patch, class: 'btn btn-primary btn-sm btn-modal' %>
     <%= link_to 'NO', '#', id: 'close', class: 'btn btn-primary btn-sm btn-modal' %>
   </div>
 

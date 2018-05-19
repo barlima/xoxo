@@ -39,7 +39,7 @@ class Room
   end
 
   def get_oponent_for(nickname)
-    
+    nickname == users.first.nickname ? users.second : users.first
   end
 
   private
